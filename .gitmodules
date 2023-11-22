@@ -1,0 +1,6 @@
+[submodule "StarRailData"]
+	path = StarRailData
+	url = https://github.com/Dimbreath/StarRailData
+[submodule "StarRailRes"]
+	path = StarRailRes
+	url = https://github.com/Mar-7th/StarRailRes

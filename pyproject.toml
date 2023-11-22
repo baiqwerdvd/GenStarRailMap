@@ -1,0 +1,14 @@
+[project]
+name = "GenStarRailMap"
+version = ""
+description = ""
+authors = [
+    {name = "qwerdvd", email = "105906879+qwerdvd@users.noreply.github.com"},
+]
+dependencies = [
+    "aiohttp>=3.9.0",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "MIT"}
+

@@ -51,27 +51,36 @@ async def download(
                     f.write(json.dumps(json_data, indent=4, ensure_ascii=False))
 
 
-async def main():
+async def main(enable_beta: bool):
+    shutil.rmtree("output/gen")
     shutil.copytree("base_map", "output/gen")
     Path("beta_json/avatar").mkdir(parents=True, exist_ok=True)
     Path("beta_json/equipment").mkdir(parents=True, exist_ok=True)
     Path("output/excel").mkdir(parents=True, exist_ok=True)
 
     gen_origin_mapping()
+    if enable_beta:
+        print("Enable Beta Generate")
+        beta_avatar_list: list[int] = [1305]
+        beta_equipment: list[tuple[int, str]] = [
+            (23019, ""),
+            (23020, "CriticalDamageBase"),
+            (23011, "HPAddedRatio,SPRatioBase"),
+        ]
 
-    beta_avatar_list: list[int] = [1305]
-    beta_equipment: list[tuple[int, str]] = [
-        (23019, ""),
-        (23020, "CriticalDamageBase"),
-        (23011, "HPAddedRatio,SPRatioBase"),
-    ]
+        await download(beta_avatar_list, beta_equipment)
 
-    await download(beta_avatar_list, beta_equipment)
-
-    gen_beta_mapping(BETA_JSON_PATH)
+        gen_beta_mapping(BETA_JSON_PATH)
 
 
 if __name__ == "__main__":
     import asyncio
+    import argparse
 
-    asyncio.run(main())
+    parser = argparse.ArgumentParser(description="StraRailUID Map Generater")
+    parser.add_argument("--beta", type=bool, default=False)
+
+    args = parser.parse_args()
+    enable_beta = args.beta
+
+    asyncio.run(main(enable_beta))

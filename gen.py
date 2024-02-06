@@ -241,8 +241,8 @@ def gen_origin_mapping():
                 {} if item not in RelicSetSkill[set_] else RelicSetSkill[set_][item]
             )
             for property_ in property_list:
-                property_id = property_["CGPJJEJHMJE"]
-                property_value = property_["JCFBPDLNMLH"]["Value"]
+                property_id = property_["KHGMJFPILBD"]
+                property_value = property_["BOANKOCFAIM"]["Value"]
                 RelicSetSkill[set_][item]["Property"] = property_id
                 RelicSetSkill[set_][item]["Value"] = property_value
 
